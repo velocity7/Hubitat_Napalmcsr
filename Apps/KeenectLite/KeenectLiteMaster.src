@@ -62,7 +62,7 @@ def initialize() {
     unsubscribe()
     subscribe(tStat, "thermostatOperatingState", OperatingStateHandler)    
 	debuglog "Getting Thermostat running State" 
-	state.mainState = state.mainState ?: getMainTstatState()
+	state.mainState = getMainTstatState()
     debuglog "There are ${childApps.size()} installed child apps"
     childApps.each {child ->
     debuglog "Child app: ${child.label}"
@@ -70,6 +70,7 @@ def initialize() {
     state.childTemps= [:]
     state.childSetpoint= [:]
     state.childVentOpening= [:]
+	SendTstatStateChange()
 }
 
 def getMainTstatState(){
