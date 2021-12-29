@@ -384,7 +384,7 @@ def setVents(newVo){
 	if(!PauseZone){
 		vents.each{vent ->
 			debuglog "${vent} : ${state.VentOpeningMap[vent.displayName]}"
-			if (((state.VentOpeningMap[vent.displayName].toInteger()-newVo.toInteger())>7) || ((state.VentOpeningMap[vent.displayName].toInteger()-newVo.toInteger())<-7)){
+			if ((state.VentOpeningMap[vent.displayName]==null) || ((state.VentOpeningMap[vent.displayName].toInteger()-newVo.toInteger())>7) || ((state.VentOpeningMap[vent.displayName].toInteger()-newVo.toInteger())<-7)){
 				debuglog "Vent was far enough away to move"
 				vent.setLevel(newVo)
 				runIn(60*1, ventcheck)
